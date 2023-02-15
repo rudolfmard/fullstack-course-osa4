@@ -85,18 +85,18 @@ describe('total likes ', () => {
   })
 })
 
-describe('The favorite blog', () => {
-  test('"Canonical string reduction" has 12 likes from list with many blogs', () => {
+describe('The favorite blog is', () => {
+  test('"Canonical string reduction" from list with many blogs', () => {
     const result = listHelper.favoriteBlog(listWithManyBlogs)
     expect(result).toEqual(listWithManyBlogs[2])
   })
 
-  test('"Go To Statement Considered Harmful" has 5 likes from list with one blog', () => {
+  test('"Go To Statement Considered Harmful" from list with one blog', () => {
     const result = listHelper.favoriteBlog(listWithOneBlog)
     expect(result).toEqual(listWithOneBlog[0])
   })
 
-  test('is null from an empty list', () => {
+  test('null from an empty list', () => {
     expect(listHelper.favoriteBlog([])).toBe(null)
   })
 })
@@ -120,5 +120,25 @@ describe('The author who has most blogs is', () => {
 
   test('is null from empty list', () => {
     expect(listHelper.mostBlogs([])).toBe(null)
+  })
+})
+
+describe('The author with most likes is', () => {
+  test('Edsger W. Dijkstra from list with many blogs', () => {
+    expect(listHelper.mostLikes(listWithManyBlogs)).toEqual({
+      author: "Edsger W. Dijkstra",
+      likes: 17
+    })
+  })
+
+  test('Edsger W. Dijkstra from list with one blog', () => {
+    expect(listHelper.mostLikes(listWithOneBlog)).toEqual({
+      author: "Edsger W. Dijkstra",
+      likes: 5
+    })
+  })
+
+  test('null from empty list', () => {
+    expect(listHelper.mostLikes([])).toBe(null)
   })
 })

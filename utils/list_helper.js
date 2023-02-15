@@ -52,9 +52,41 @@ const mostBlogs = (blogs) => {
     )
 }
 
+const mostLikes = (blogs) => {
+    if (blogs.length === 0){
+        return null
+    }
+    // get array of unique authors:
+    let authors = [...new Set(blogs.map(blog  => blog.author))]
+    // get number of likes per author
+    likesPerAuthor = []
+    for(i = 0; i<authors.length; i++){
+        blogsByAuthor = blogs.filter(b => b.author === authors[i])
+        likes = blogsByAuthor.map(b => Number(b.likes))
+        likesPerAuthor.push(likes.reduce((sum, l) => sum+l, 0))
+    }
+    // get the author corresponding to most likes:
+    let max_likes = likesPerAuthor[0]
+    let max_author = authors[0] 
+    for(i = 1; i < authors.length; i++){
+        if (likesPerAuthor[i] > max_likes){
+            max_likes = likesPerAuthor[i]
+            max_author = authors[i]
+        }
+    }
+
+    return (
+        {
+            author: max_author,
+            likes: max_likes
+        }
+    )
+}
+
 module.exports = {
     dummy,
     totalLikes,
     favoriteBlog,
-    mostBlogs
+    mostBlogs,
+    mostLikes
 }
