@@ -2,8 +2,8 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Paras Blogi",
+    "title": "Vähän huonompi Blogi",
     "author": "Blogi Jannu",
     "url": "parasblogi.com",
-    "likes": 9001
+    "likes": 5
 }
