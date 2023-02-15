@@ -84,3 +84,10 @@ describe('total likes ', () => {
     expect(listHelper.totalLikes([])).toBe(0)
   })
 })
+
+describe('The favorite blog', () => {
+  test('"Canonical string reduction" has 12 likes', () => {
+    const result = listHelper.favoriteBlog(listWithManyBlogs)
+    expect(result).toEqual(listWithManyBlogs[2])
+  })
+})
