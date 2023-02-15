@@ -1,1 +1,1 @@
-# fullstack-course-osa4
+This repository contains submitted assignments for part 3 of the Full Stack open course.
