@@ -92,3 +92,12 @@ describe('New blog must contain fields', () => {
             .expect(400)
     })
 })
+
+test('Deleting a single blog decreases the number of blogs by one', async () => {
+    await api
+        .delete('/api/blogs/5a422bc61b54a676234d17fc')
+        .expect(204)
+
+    const response = await api.get('/api/blogs')
+    expect(response.body).toHaveLength(helper.initialBlogs.length-1)
+})
