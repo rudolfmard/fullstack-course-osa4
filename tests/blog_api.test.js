@@ -66,3 +66,29 @@ test('Field "likes" defaults to 0 if it is not defined when a blog is added', as
     expect(response.body[0].title).toBe("Another test blog",)
     expect(response.body[0].likes).toBe(0)
 })
+
+describe('New blog must contain fields', () => {
+    test('title', async () => {
+        const testBlog = {
+            author: "Testi Jannun veli",
+            url: "https://eiooeikatuu.com/",
+            likes: 0
+        }
+        await api
+            .post('/api/blogs')
+            .send(testBlog)
+            .expect(400)
+    })
+
+    test('url', async () => {
+        const testBlog = {
+            title: "Another test blog",
+            author: "Testi Jannun veli",
+            likes: 0
+        }
+        await api
+            .post('/api/blogs')
+            .send(testBlog)
+            .expect(400)
+    })
+})
