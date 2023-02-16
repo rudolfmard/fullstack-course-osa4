@@ -101,3 +101,21 @@ test('Deleting a single blog decreases the number of blogs by one', async () => 
     const response = await api.get('/api/blogs')
     expect(response.body).toHaveLength(helper.initialBlogs.length-1)
 })
+
+test('Change in the number of likes goes to the database', async () => {
+    const changedBlog = {
+        title: "TDD harms architecture",
+        author: "Robert C. Martin",
+        url: "http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html",
+        likes: 400,
+    }
+
+    await api
+        .put('/api/blogs/5a422ba71b54a676234d17fb')
+        .send(changedBlog)
+        .expect(200)
+    
+    const response = await api.get('/api/blogs')
+    const changedFromDB = response.body.filter(b => b.id === '5a422ba71b54a676234d17fb')[0]
+    expect(changedFromDB.likes).toBe(400)
+})
