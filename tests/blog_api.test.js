@@ -46,3 +46,23 @@ test('After adding one blog the number of blogs increment by one', async () => {
     const response = await api.get('/api/blogs')
     expect(response.body).toHaveLength(helper.initialBlogs.length + 1)
 })
+
+test('Field "likes" defaults to 0 if it is not defined when a blog is added', async () => {
+    await Blog.deleteMany({})
+
+    const testBlog = {
+        title: "Another test blog",
+        author: "Testi Jannun veli",
+        url: "https://eiooeikatuu.com/",
+    }
+    await api
+        .post('/api/blogs')
+        .send(testBlog)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+
+    const response = await api.get('/api/blogs')
+    expect(response.body).toHaveLength(1)
+    expect(response.body[0].title).toBe("Another test blog",)
+    expect(response.body[0].likes).toBe(0)
+})
