@@ -22,3 +22,10 @@ test('The correct number of blogs are returned', async () => {
     const response = await api.get('/api/blogs')
     expect(response.body).toHaveLength(helper.initialBlogs.length)
 })
+
+test('Blog object contains field "id"', async () => {
+    const response = await api.get('/api/blogs')
+    for(let blog of response.body){
+        expect(blog.id).toBeDefined()
+    }
+})
