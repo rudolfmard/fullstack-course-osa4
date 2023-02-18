@@ -13,7 +13,7 @@ blogsRouter.post('/', async (request, response) => {
 	if (!decodedToken.id){
 		return response.status(401).json({error: 'invalid token'})
 	}
-	const blogAdder = await User.findById(decodedToken.id)
+	const user = await User.findById(decodedToken.id)
 
 	const body = request.body
     const blog = new Blog({
@@ -21,17 +21,28 @@ blogsRouter.post('/', async (request, response) => {
 		author: body.author,
 		url: body.url,
 		likes: body.likes === undefined ? 0 : body.likes,
-		user: blogAdder._id
+		user: user._id
 	})
 	const savedBlog = await blog.save()
 
-	blogAdder.blogs = blogAdder.blogs.concat(savedBlog._id)
-	await blogAdder.save()
+	user.blogs = user.blogs.concat(savedBlog._id)
+	await user.save()
 
 	response.status(201).json(savedBlog)
 })
 
 blogsRouter.delete('/:id', async (request, response) => {
+	const decodedToken = jwt.verify(request.token, process.env.SECRET)
+	if (!decodedToken.id){
+		return response.status(401).json({error: 'invalid token'})
+	}
+	const user = await User.findById(decodedToken.id)
+
+	const blog = await Blog.findById(request.params.id)
+	if (blog.user.toString() !== user._id.toString()){
+		return response.status(401).json({error: 'Token belongs to unauthorized user'})
+	}
+
 	const result = await Blog.findByIdAndRemove(request.params.id)
 	response.status(204).end()
 })
