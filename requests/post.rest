@@ -1,9 +1,10 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InhYeFF1aWNrU2NvcGV4WHgiLCJpZCI6IjYzZWZhYmEyYTYzNTYyNjZlZTg5ZDBhZSIsImlhdCI6MTY3NjcyNjkwOH0.Bb9rpTzYkhcO6_k6N-LzCDqfK4RDGknH0VlcBtrIrJk
 
 {
-    "title": "Paras Blogi",
-    "author": "Blogi Jannun Broidi",
-    "url": "parasblogi.com",
-    "likes": 0
+    "title": "Blogi1234",
+    "author": "Poppy D.",
+    "url": "blogi.fi",
+    "likes": 1
 }
