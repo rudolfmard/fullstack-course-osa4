@@ -1,10 +1,10 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InhYeFF1aWNrU2NvcGV4WHgiLCJpZCI6IjYzZWZhYmEyYTYzNTYyNjZlZTg5ZDBhZSIsImlhdCI6MTY3NjcyOTY1MH0.xUBbieb2Dc0gYGNEBdsp_GwqOCJmfX3OhGj09JNYCMQ
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InhYeFF1aWNrU2NvcGV4WHgiLCJpZCI6IjYzZWZhYmEyYTYzNTYyNjZlZTg5ZDBhZSIsImlhdCI6MTY3NjczMjAwMX0.d4Feb7-kL_dR_PkLjsyrUZ9L_aTresBYcgDGptlgSGs
 
 {
-    "title": "PoppiBlogi",
+    "title": "PoppiBlogi666",
     "author": "Poppy D.",
-    "url": "blogi.fi",
-    "likes": 1
+    "url": "blogi2.fi",
+    "likes": 0
 }
